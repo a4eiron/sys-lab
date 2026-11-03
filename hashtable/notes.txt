@@ -1,0 +1,43 @@
+hash function
+	- takes in a key and converts it into an integer (a "hash")
+
+hash collision
+	- a hash function generating the same index for more than one key
+
+hash table
+	- a data structure that implements an associative array(a map)
+	- uses a hash function to compute an index into an array of buckets or slots
+
+perfect hash function
+	- a perfect hash function h for a set S is hash function that maps distinct elements
+	in S to a set of m integers, with no collisions (an injective function)
+
+Handling hash collisions
+------------------------
+- separate chaining
+	- stores multiple elements in the same slot using linked lists
+
+- open addressing
+	- seaches for the next available slot
+
+load factor
+	- ratio of the no.of stored elements to the no.of available slots
+	- high load factor increases collisions and slows down lookups
+	- we should resize(rehash) the table when the load factor exceeds a threshold to maintain perf
+
+
+hashing by division
+	=> `h(x) = x mod m`
+	where,
+	x belongs to S
+	m is size of the table
+
+
+hashing by multiplication
+	=> `h(x) = floor(m((xA) mod 1))`
+
+
+a good hash function should
+	- be determinisitc
+	- be efficient to compute
+	- uniformly distribute the keys
