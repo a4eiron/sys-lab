@@ -16,7 +16,7 @@ void add_scalar(const float *a, const float *b, float *c, int n) {
 // _mm256 - register width
 // add - operation
 // ps - data type
-void add_vec(const float *a, const float *b, float *c, int n) {
+void add_avx2(const float *a, const float *b, float *c, int n) {
     int i = 0;
     for (; i + 8 <= n; i += 8) {
         __m256 va = _mm256_loadu_ps(a + i); // unaligned
@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
     add_scalar(a, b, c1, N);
     double t1 = now();
 
-    add_vec(a, b, c2, N);
+    add_avx2(a, b, c2, N);
     double t2 = now();
 
     for (int i = 0; i < N; i++) {
