@@ -1,0 +1,44 @@
+---- optimization level: -O0 ----
+results match
+scalar: 35.84 ms
+avx2: 26.01 ms
+
+results match
+scalar: 35.98 ms
+avx2: 24.42 ms
+
+results match
+scalar: 35.05 ms
+avx2: 24.32 ms
+
+results match
+scalar: 34.71 ms
+avx2: 24.48 ms
+
+results match
+scalar: 34.96 ms
+avx2: 25.66 ms
+
+
+---- optimization level: -O3 ----
+results match
+scalar: 20.36 ms
+avx2: 19.88 ms
+
+results match
+scalar: 20.35 ms
+avx2: 19.81 ms
+
+results match
+scalar: 20.35 ms
+avx2: 19.95 ms
+
+results match
+scalar: 20.43 ms
+avx2: 19.76 ms
+
+results match
+scalar: 20.49 ms
+avx2: 19.91 ms
+
+

@@ -1,0 +1,61 @@
+Flynns's taxonomy
+-----------------
+- a classification system for computer architectures
+- based on the no.of concurrent `instruction streams` and `data streams`
+- categories: SISD, SIMD, MISD, MIMD
+
+SIMD - Single Instruction, Multiple Data
+----
+- a form of data-level parallelism
+- different from multithreading (task-level parallelism)
+- happens inside a single core
+
+
+vector register:
+    - a wide register (128, 256, or 512 bits) that holds multiple elements packed 
+    side-by-side
+
+lane:
+    - one element slot in a vector register. a 256-bit register holds 8 * 32-bit floats, 
+    so it has 8 lanes
+
+vector width:
+    - total register size. wider -> more lanes per instruction 
+
+
+SIMD (vector) registers
+----------------------
+x86
+---
+name: xmm0 to xmm15     width: 128-bit     introduced with: SSE         c-type: __m128
+      ymm0 to ymm15            256-bit                      AVX                 __m256
+      zmm0 to zmm31            512-bit                      AVX-512             __m512
+
+::::they(the registers) overlap, just like general registers(rax, eax etc.,)
+
+
+Data types
+----------
+**packed**: multiple separate values are stored side-by-side inside one register,
+so a single instruction can operate on all of them at once
+
+ps              - packed single(32-bit floats)
+pd              - packed double(64-bit floats)
+ss/sd           - scalar single/double(only the lowest lane)
+epi(8|16|32|64) - packed signed integers
+epu(8|16|32)    - packed unsigned integers
+si(128|256)     - the whole register as raw bits
+
+
+intrinsics (built-in functions???(implementation is handled by the compiler))
+----------
+    - maps to single machine instruction
+
+1. Load, store and initialize
+-----------------------------
+__m256 v;
+v = _mm256_loadu_ps(ptr)    // unaligned load of 8 floats
+v = _mm256_load_ps(ptr)     // aligned load (ptr must be 32-byte aligned, or it crashes)
+
+_mm256_storeu_ps(ptr, v)    // unaligned store
+
