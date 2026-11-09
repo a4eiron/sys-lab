@@ -1,12 +1,9 @@
 // vector addition
 
+#include "common.h"
 #include <immintrin.h>
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-#define N (1 << 24) // 16 M
 
 void add_scalar(const float *a, const float *b, float *c, int n) {
     for (int i = 0; i < n; i++)
@@ -28,12 +25,6 @@ void add_avx2(const float *a, const float *b, float *c, int n) {
     // handle leftover
     for (; i < n; i++)
         c[i] = a[i] + b[i];
-}
-
-static double now() {
-    struct timespec t;
-    clock_gettime(CLOCK_MONOTONIC, &t);
-    return t.tv_sec + t.tv_nsec * 1e-9;
 }
 
 int main(int argc, char **argv) {
